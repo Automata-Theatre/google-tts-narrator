@@ -1,0 +1,24 @@
+{
+  "name": "tts-narrator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "@google-cloud/text-to-speech": "^3.2.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Automata-Theatre/tts-narrator.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Automata-Theatre/tts-narrator/issues"
+  },
+  "homepage": "https://github.com/Automata-Theatre/tts-narrator#readme"
+}
