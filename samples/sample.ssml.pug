@@ -2,7 +2,7 @@
 mixin staff(audioConfig = {}, voice = {})
   -
     audioConfig = Object.assign({
-      pitch: 3.6, speakingRate: 1.15,
+      pitch: 3.6, speakingRate: 1.05,
       audioEncoding: 'MP3',
     }, audioConfig)
     voice = Object.assign({
@@ -15,7 +15,7 @@ mixin staff(audioConfig = {}, voice = {})
 mixin customer(audioConfig = {}, voice = {})
   -
     audioConfig = Object.assign({
-      pitch: 1.6, speakingRate: 1.15,
+      pitch: 1.6, speakingRate: 1.12,
       audioEncoding: 'MP3',
     }, audioConfig)
     voice = Object.assign({
@@ -24,8 +24,8 @@ mixin customer(audioConfig = {}, voice = {})
   speak(audioConfig=audioConfig voice=voice)
     block
 
-
-+staff いらっしゃいませ〜
+//- Adjusting speaking speed
++staff({speakingRate: 1.15}) いらっしゃいませ〜
 
 +customer おでんをください。
 
@@ -35,7 +35,7 @@ mixin customer(audioConfig = {}, voice = {})
 
 +staff はい、ではお好きなおでんをどうぞ。
 
-+customer
++customer({speakingRate: 1.05})
   | 大根と、たまごと、牛すじを......#[break(time='500ms')/]
   | あと、タコさんウインナーもお願いします。
 
