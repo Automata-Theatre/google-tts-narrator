@@ -1,0 +1,59 @@
+//- Setup staff's voice
+mixin staff(audioConfig = {}, voice = {})
+  -
+    audioConfig = Object.assign({
+      pitch: 3.6, speakingRate: 1.15,
+      audioEncoding: 'MP3',
+    }, audioConfig)
+    voice = Object.assign({
+      languageCode: 'ja-JP', name: 'ja-JP-Wavenet-C',
+    }, voice)
+  speak(audioConfig=audioConfig voice=voice)
+    block
+
+//- Setup customer's voice
+mixin customer(audioConfig = {}, voice = {})
+  -
+    audioConfig = Object.assign({
+      pitch: 1.6, speakingRate: 1.15,
+      audioEncoding: 'MP3',
+    }, audioConfig)
+    voice = Object.assign({
+      languageCode: 'ja-JP', name: 'ja-JP-Wavenet-A',
+    }, voice)
+  speak(audioConfig=audioConfig voice=voice)
+    block
+
+
++staff いらっしゃいませ〜
+
++customer おでんをください。
+
++staff 器の大きさはどういたしますか?
+
++customer #[sub(alias='ちゅう') 中]くらいでお願いします。
+
++staff はい、ではお好きなおでんをどうぞ。
+
++customer
+  | 大根と、たまごと、牛すじを......#[break(time='500ms')/]
+  | あと、タコさんウインナーもお願いします。
+
++staff
+  | かしこまりました。#[break(time='300ms')/]
+  | おつゆはどういたしましょうか?
+
++customer たっぷりお願いします。
+
++staff はい。以上でよろしいでしょうか?
+
++customer はい。ありがとうございます。
+
++staff 1137 円です。
+
++customer 2000 円でお願いします。
+
++staff
+  | はい......#[break(time='500ms')/]863円とレシートです。ありがとうございます。
+
++customer ありがとうございます。
