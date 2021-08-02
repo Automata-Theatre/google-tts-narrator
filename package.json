@@ -1,5 +1,5 @@
 {
-  "name": "tts-narrator",
+  "name": "google-tts-narrator",
   "version": "0.0.1",
   "description": "A Google Text-to-Speech Narrator",
   "main": "index.js",
@@ -21,6 +21,9 @@
   "keywords": [],
   "author": "",
   "license": "MIT",
+  "bin": {
+    "google-tts-narrator": "cli.js"
+  },
   "bugs": {
     "url": "https://github.com/Automata-Theatre/tts-narrator/issues"
   },
