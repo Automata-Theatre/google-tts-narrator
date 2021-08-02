@@ -3,6 +3,7 @@
 
 const fs = require('fs')
 const path = require('path')
+const pug = require('pug')
 const GoogleTTS = require('./lib/google_tts')
 const argv = require('./lib/argv')
 
@@ -17,8 +18,13 @@ type = type || extname.replace('.', '')
 const googleTTS = new GoogleTTS()
 
 ;(async () => {
-  const scenario = fs.readFileSync(filePath).toString()
-  await googleTTS.loadScenario(scenario, type)
+  if (type.toLowerCase() === 'pug') {
+    const scenario = pug.renderFile(filePath) // deal with multi-file pugs
+    await googleTTS.loadScenario(scenario, 'xml')
+  } else {
+    const scenario = fs.readFileSync(filePath).toString()
+    await googleTTS.loadScenario(scenario, type)
+  }
 
   const speaches = await googleTTS.fetchSpeeches()
   const digNum = (speaches.length).toString().length // calc length of ID
