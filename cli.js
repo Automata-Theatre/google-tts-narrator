@@ -4,7 +4,7 @@
 const fs = require('fs')
 const path = require('path')
 const pug = require('pug')
-const GoogleTTS = require('./lib/google_tts')
+const Narrator = require('./index')
 const argv = require('./lib/argv')
 
 let { s: filePath, d: dir, type } = argv
@@ -15,18 +15,18 @@ const fileName = path.basename(filePath, extname).replace(/\./g, '_')
 dir = dir || `./${fileName}_${(new Date()).toISOString()}`
 type = type || extname.replace('.', '')
 
-const googleTTS = new GoogleTTS()
+const narrator = new Narrator()
 
 ;(async () => {
   if (type.toLowerCase() === 'pug') {
     const scenario = pug.renderFile(filePath) // deal with multi-file pugs
-    await googleTTS.loadScenario(scenario, 'xml')
+    await narrator.loadScenario(scenario, 'xml')
   } else {
     const scenario = fs.readFileSync(filePath).toString()
-    await googleTTS.loadScenario(scenario, type)
+    await narrator.loadScenario(scenario, type)
   }
 
-  const speaches = await googleTTS.fetchSpeeches()
+  const speaches = await narrator.fetchSpeeches()
   const digNum = (speaches.length).toString().length // calc length of ID
 
   if (!fs.existsSync(dir)) { fs.mkdirSync(dir) }
