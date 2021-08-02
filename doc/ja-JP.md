@@ -55,12 +55,12 @@ Google Cloud Text-to-SpeechのAPIは一回のCallに `<speak></speak>` 要素一
 
 上記シナリオは以下の２本MP3に変換されています。
 
-<audio controls src="./doc/assets/demo_1.mp3">
-  [demo_1.mp3](./doc/assets/demo_1.mp3)
+<audio controls src="./assets/demo_1.mp3">
+  [demo_1.mp3](./assets/demo_1.mp3)
 </audio>
 <br/>
-<audio controls src="./doc/assets/demo_2.mp3">
-  [demo_2.mp3](./doc/assets/demo_2.mp3)
+<audio controls src="./assets/demo_2.mp3">
+  [demo_2.mp3](./assets/demo_2.mp3)
 </audio>
 
 ### [PUG(was Jade)](https://pugjs.org/api/getting-started.html)
