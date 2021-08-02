@@ -35,6 +35,20 @@ class Narrator extends GoogleTTS {
 
     return results
   }
+
+  static async fetchSpeechByIndex(scenario = '', type = 'pug', index = 0) {
+    const tts = new GoogleTTS()
+    await tts.loadScenario(scenario.toString(), type)
+    const requestList = Array.from(tts.gen)
+
+    if (!requestList[index]) {
+      throw `Element id=${index} not in this scenario`
+    }
+
+    const [response] = await tts.client.synthesizeSpeech(requestList[index])
+
+    return response
+  }
 }
 
 module.exports = Narrator
