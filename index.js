@@ -3,8 +3,8 @@
 const GoogleTTS = require('./lib/google_tts')
 
 class Narrator extends GoogleTTS {
-  static async * yieldSpeeches(scenario = '', type = 'pug') {
-    const tts = new GoogleTTS()
+  static async * yieldSpeeches(scenario = '', type = 'pug', opt = {}) {
+    const tts = new GoogleTTS(opt)
     await tts.loadScenario(scenario.toString(), type)
 
     while (true) {
@@ -20,8 +20,8 @@ class Narrator extends GoogleTTS {
     }
   }
 
-  static async fetchSpeeches(scenario = '', type = 'pug') {
-    const tts = new GoogleTTS()
+  static async fetchSpeeches(scenario = '', type = 'pug', opt = {}) {
+    const tts = new GoogleTTS(opt)
     await tts.loadScenario(scenario.toString(), type)
 
     const results = []
@@ -34,6 +34,20 @@ class Narrator extends GoogleTTS {
     }
 
     return results
+  }
+
+  static async fetchSpeechByIndex(scenario = '', type = 'pug', index = 0, opt = {}) {
+    const tts = new GoogleTTS(opt)
+    await tts.loadScenario(scenario.toString(), type)
+    const requestList = Array.from(tts.gen)
+
+    if (!requestList[index]) {
+      throw `Element id=${index} not in this scenario`
+    }
+
+    const [response] = await tts.client.synthesizeSpeech(requestList[index])
+
+    return response
   }
 }
 
