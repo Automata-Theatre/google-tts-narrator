@@ -1,6 +1,6 @@
 # Google TTS Narrator
 
-![Coverage Status](https://img.shields.io/badge/coverage-93%25-brightgreen)
+![Coverage Status](https://img.shields.io/badge/coverage-95%25-brightgreen)
 
 
 Use **[Google Cloud Text-to-Speech](https://cloud.google.com/text-to-speech)** to convert **[SSML](https://cloud.google.com/text-to-speech/docs/ssml)** (or other types, see below) text into speeches.

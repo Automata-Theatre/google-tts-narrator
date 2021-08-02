@@ -80,4 +80,21 @@ describe('Test tts api', () => {
     expect(speaches.length).toBeGreaterThan(0)
     expect(speaches[0].audioContent).toBeTruthy()
   })
+
+  test('Test quick api id mode', async () => {
+    const scenario = await readFile(testFiles['pug'], 'utf-8')
+    const speach = await Narrator.fetchSpeechByIndex(scenario, 'pug', 3)
+
+    expect(speach.audioContent).toBeTruthy()
+  })
+})
+
+describe('Test error handler', () => {
+  test('Throws if not init', async () => {
+    const narrator = new Narrator()
+    const gen = narrator.yieldSpeeches()
+
+    expect(async () => { await gen.next() }).rejects.toThrow()
+    expect(async () => { await narrator.fetchSpeeches() }).rejects.toThrow()
+  })
 })
