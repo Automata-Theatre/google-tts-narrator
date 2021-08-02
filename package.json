@@ -7,7 +7,8 @@
     "@google-cloud/text-to-speech": "^3.2.6",
     "js-yaml": "^4.1.0",
     "pug": "^3.0.2",
-    "xmldom": "^0.6.0"
+    "xmldom": "^0.6.0",
+    "yargs": "^16.2.0"
   },
   "devDependencies": {},
   "scripts": {
