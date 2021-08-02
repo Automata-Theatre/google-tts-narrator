@@ -1,0 +1,24 @@
+<speak audioConfig='{"audioEncoding": "MP3", "pitch": 0, "speakingRate": 0.89}'
+  voice='{"languageCode": "ja-JP", "name": "ja-JP-Wavenet-C"}'>
+  <sub alias="てんわひとのうえにひとをつくらず、ひとのしたにひとをつくらずといえり">
+  天ハ人ノ上ニ人ヲ造ラズ人ノ下ニ人ヲ造ラズト云ヘリ。</sub>
+</speak>
+
+<speak audioConfig='{"audioEncoding": "MP3", "pitch": 0, "speakingRate": 1}'
+  voice='{"languageCode": "en-US", "name": "en-US-Wavenet-G"}'>
+  The <say-as interpret-as="characters">SSML</say-as>standard
+  <break time="1s"/>is defined by the
+  <sub alias="World Wide Web Consortium">W3C</sub>.
+</speak>
+
+<speak audioConfig='{"audioEncoding": "MP3", "effectsProfileId": ["handset-class-device"], "pitch": 1.6, "speakingRate": 0.93}'
+  voice='{"languageCode": "ja-JP", "name": "ja-JP-Wavenet-A"}'>
+  お電話ありがとうございます。<break time="300ms"/>只今電話にでることができません。
+  <audio src="https://upload.wikimedia.org/wikipedia/commons/9/91/Sound4.wav">ピッピー</audio>
+  という音のあとにお名前とご用件をお話しください。
+</speak>
+
+<speak audioConfig='{"audioEncoding": "MP3", "pitch": 1.6, "speakingRate": 0.93}'
+  voice='{"languageCode": "cmn-CN", "name": "cmn-CN-Wavenet-D"}'>
+  莫笑农家腊酒浑，萧伯纳雪莱拜伦，昔人已乘黄鹤去，雾都孤儿双城记，不羡鸳鸯不羡仙，十里山路不换肩
+</speak>

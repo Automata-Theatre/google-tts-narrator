@@ -1,0 +1,57 @@
+- &staff # Setup staff
+  audioConfig:
+    audioEncoding: MP3
+    pitch: 1.6
+    speakingRate: 1.07
+  voice:
+    languageCode: ja-JP
+    name: ja-JP-Wavenet-A
+  input:
+    text: いらっしゃいませ。
+- &customer # Setup customer
+  audioConfig:
+    audioEncoding: MP3
+    pitch: 1.6
+    speakingRate: 1.07
+  voice:
+    languageCode: ja-JP
+    name: ja-JP-Wavenet-D
+  input:
+    text: チーズバーガーをください。
+-
+  <<: *staff
+  input:
+    ssml: |-
+      <speak>
+        かしこまりました。お召し上がりですか?<break time="300ms"/>お持ち帰りですか?
+      </speak>
+-
+  <<: *customer
+  input:
+    text: 持ち帰ります。
+-
+  <<: *staff
+  input:
+    text: 以上でよろしいでしょうか？
+-
+  <<: *customer
+  input:
+    text: 以上で結構です。
+-
+  <<: *staff
+  input:
+    text: お会計は 910円 です。
+-
+  <<: *customer
+  input:
+    text: 1010 円でお願いします。
+-
+  <<: *staff
+  input:
+    text: >-
+      100 円のお返しとレシートです。
+      できあがりまで、左側にズレてお待ちください。ありがとうございました。
+-
+  <<: *customer
+  input:
+    text: はい。ありがとうございます。

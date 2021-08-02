@@ -1,0 +1,26 @@
+[
+  {
+    "voice": {
+      "languageCode": "en-US",
+      "ssmlGender": "NEUTRAL"
+    },
+    "audioConfig": {
+      "audioEncoding": "MP3"
+    },
+    "input": {
+      "text": "Hello, world!"
+    }
+  },
+  {
+    "voice": {
+      "languageCode": "en-ES",
+      "name": "es-ES-Standard-C"
+    },
+    "audioConfig": {
+      "audioEncoding": "MP3"
+    },
+    "input": {
+      "text": "¡Hola, mundo!"
+    }
+  }
+]
