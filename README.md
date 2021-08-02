@@ -55,12 +55,12 @@ You need to set `audioConfig` and `voice` attributes for each dialogue, which co
 ```
 
 Upper scenario file will convert to 2 sound tracks:  
-<audio controls src="./doc/assets/demo_1.mp3">
-  [demo_1.mp3](./doc/assets/demo_1.mp3)
+<audio controls src="./assets/demo_1.mp3">
+  [demo_1.mp3](./assets/demo_1.mp3)
 </audio>
 <br/>
-<audio controls src="./doc/assets/demo_2.mp3">
-  [demo_2.mp3](./doc/assets/demo_2.mp3)
+<audio controls src="./assets/demo_2.mp3">
+  [demo_2.mp3](./assets/demo_2.mp3)
 </audio>
 
 ### [PUG(was Jade)](https://pugjs.org/api/getting-started.html)
