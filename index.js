@@ -11,10 +11,10 @@ class Narrator extends GoogleTTS {
       const { done, value } = tts.gen.next()
       if (done) { break }
       const [response] = await tts.client.synthesizeSpeech(value)
+      tts.step++
       response['narratorInfo'] = {
         step: tts.step, totalCount: tts.totalCount,
       }
-      tts.step++
 
       yield response
     }

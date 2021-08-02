@@ -5,10 +5,10 @@ const util = require('util')
 const readFile = util.promisify(fs.readFile)
 
 const testFiles = {
-  xml: 'samples/test.ssml.xml',
-  pug: 'samples/sample.ssml.pug',
-  json: 'samples/sample.json',
-  yml: 'samples/sample.yml',
+  xml: 'samples/general_demo.ssml.xml',
+  pug: 'samples/dialogue_demo.ssml.pug',
+  json: 'samples/json_demo.json',
+  yml: 'samples/yaml_demo.yml',
 }
 
 describe('Test scenario parser', () => {
@@ -62,16 +62,18 @@ describe('Test tts api', () => {
     expect(narrator.step).toBe(narrator.totalCount)
   })
 
-  test('Test easy generator mode', async () => {
+  test('Test quick api generator mode', async () => {
     const scenario = await readFile(testFiles['pug'])
     const gen = Narrator.yieldSpeeches(scenario.toString(), 'pug')
 
+    await gen.next() // discard 1st result
     const { done, value } = await gen.next()
     expect(done).toBeFalsy()
     expect(value.audioContent).toBeTruthy()
+    expect(value.narratorInfo.step).toEqual(2)
   })
 
-  test('Test easy batch mode', async () => {
+  test('Test quick api batch mode', async () => {
     const scenario = await readFile(testFiles['json'])
     const speaches = await Narrator.fetchSpeeches(scenario.toString(), 'json')
 

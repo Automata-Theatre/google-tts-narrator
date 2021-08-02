@@ -1,0 +1,22 @@
+mixin enSpeaker(audioConfig = {}, voice = {})
+  -
+    audioConfig = Object.assign({
+      speakingRate: 1.12, audioEncoding: 'MP3',
+    }, audioConfig)
+    voice = Object.assign({
+      languageCode: 'en-US', ssmlGender: 'MALE',
+    }, voice)
+  speak(audioConfig=audioConfig voice=voice)
+    block
+
+mixin jaSpeaker(audioConfig = {}, voice = {})
+  -
+    audioConfig = Object.assign({
+      pitch: 1.6, speakingRate: 1.12,
+      audioEncoding: 'MP3',
+    }, audioConfig)
+    voice = Object.assign({
+      languageCode: 'ja-JP', name: 'ja-JP-Wavenet-A',
+    }, voice)
+  speak(audioConfig=audioConfig voice=voice)
+    block

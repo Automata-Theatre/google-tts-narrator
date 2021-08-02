@@ -14,8 +14,7 @@
   {
     "voice": {
       "languageCode": "en-ES",
-      "name": "es-ES-Standard-C",
-      "ssmlGender": "MALE"
+      "name": "es-ES-Standard-C"
     },
     "audioConfig": {
       "audioEncoding": "MP3"
