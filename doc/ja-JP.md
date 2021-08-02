@@ -2,41 +2,40 @@
 
 ![Coverage Status](https://img.shields.io/badge/coverage-95%25-brightgreen)
 
+**[Google Cloud Text-to-Speech](https://cloud.google.com/text-to-speech)** を利用し **[SSML](https://cloud.google.com/text-to-speech/docs/ssml)** (またはその他形式)の脚本を読み上げるプログラムです。
 
-Use **[Google Cloud Text-to-Speech](https://cloud.google.com/text-to-speech)** to convert **[SSML](https://cloud.google.com/text-to-speech/docs/ssml)** (or other types, see below) text into speeches.
 
-[English](./README.md) | [日本語](./doc/ja-JP.md)
+[English](../README.md) | [日本語](./ja-JP.md)
 
-## Setup
-- Create or setup a Google Cloud project
-- Make sure you account's **billing is enabled** ([4 million characters are free each month](https://cloud.google.com/text-to-speech#section-11))
-- Enable the Cloud Text-to-Speech API
-- Download **Account key**(it is a JSON file)
-- Set `GOOGLE_APPLICATION_CREDENTIALS="/FULL/PATH/TO/ACCOUNT_KET.json"` to 
+## 環境設定
+- Google Cloud Consoleにプロジェクトを作成します
+- Cloud プロジェクトに対して**課金が有効になっている**ことを確認します([毎月最初の400万文字が無料](https://cloud.google.com/text-to-speech#section-11))
+- Cloud Text-to-Speech API を有効にします
+- **アカウント キー**(JSONファイル)をダウンロードします
+- 環境変数 `GOOGLE_APPLICATION_CREDENTIALS="/FULL/PATH/TO/ACCOUNT_KET.json"` になるようにセットします
 
-View **[here](https://cloud.google.com/text-to-speech/docs/quickstart-client-libraries#before-you-begin)** for more Infomations
+詳しくは **[こちら](https://cloud.google.com/text-to-speech/docs/quickstart-client-libraries#before-you-begin)** をご覧ください。
 
 ## Install
 
-As a module
+モジュールとして
 
 ```sh
 npm i google-tts-narrator
 ```
 
-As a cli app
+Cliアプリとして
 
 ```sh
 npx google-tts-narrator --from my_scenario.ssml.pug --to my_scenario_sounds/
 ```
 
-## Scenario File
+## シナリオファイルの書き方
 ### [SSML(XML)](https://en.wikipedia.org/wiki/Speech_Synthesis_Markup_Language)
-Google Cloud Text-to-Speech only allowed ONE `<speak></speak>` for each call,
-this library will analyze your SSML file and call for each `<speak></speak>` elements with different configs.
+Google Cloud Text-to-SpeechのAPIは一回のCallに `<speak></speak>` 要素一つしか対応しておりません。
+このライブラリーはお手元のSSMLファイルを分析し、各 `<speak></speak>` 要素にそれぞれ異なるConfigでText-to-Speech APIにアクセスします。
 
-You need to set `audioConfig` and `voice` attributes for each dialogue, which could found & tested **[here](https://cloud.google.com/text-to-speech#section-2)** and **[here](https://cloud.google.com/text-to-speech/docs/samples)**.
-
+但し、それぞれの `<speak></speak>` 要素に `audioConfig` と `voice` のプロパティーを設置しなければなりません。設置の仕方は下記のサンプルをご覧ください。また **[こちらのページ](https://cloud.google.com/text-to-speech#section-2)** や　**[こちらのページ](https://cloud.google.com/text-to-speech/docs/samples)** では、使用可能な条件を紹介しており、テストができます。
 
 ```xml
 <speak audioConfig='{"audioEncoding": "MP3", "pitch": 0, "speakingRate": 1}'
@@ -52,19 +51,22 @@ You need to set `audioConfig` and `voice` attributes for each dialogue, which co
 </speak>
 ```
 
-Upper scenario file will convert to 2 sound tracks:  
+上記シナリオは以下の２本MP3に変換されています。
+
 <audio controls src="./doc/assets/demo_1.mp3">
-  [demo_1.mp3](./doc/assets/demo_1.mp3)
+  Your browser does not support the <code>audio</code> element.
 </audio>
 <br/>
 <audio controls src="./doc/assets/demo_2.mp3">
-  [demo_2.mp3](./doc/assets/demo_2.mp3)
+  Your browser does not support the <code>audio</code> element.
 </audio>
 
 ### [PUG(was Jade)](https://pugjs.org/api/getting-started.html)
-Pug is an indent style HTML template DSL(Domain-Specific Language), it can also compiled to XML files.
+PugはインデントスタイルでHTMLを書けるDSL(Domain-Specific Language)です。
+HTMLだけでなく、XMLの作成も用いられます。
 
-SSML upper also could written like below
+
+前述したSSMLファイルは以下のように書き直せます。
 
 ```pug
 speak(
@@ -79,8 +81,8 @@ speak(
   | ¡Hola#[break(time='200ms')/] mundo!
 ```
 
-Even could separate speakers' settings from scripts, it will made dialogue script more smoothly.  
-**[Warning]** Only Cli mode can deal with separated pug files!  
+その上、語り手の設定を独立したファイルに分割して、会話の見通しをよくすることができます。
+**[警告]** モジュールとして利用する場合、分割したpugファイルは読み込めません。
 
 ```pug
 //- _speaker.pug
@@ -119,7 +121,7 @@ include _speaker.pug
 ```
 
 ### YAML(JSON)
-You may also create an array of Text-to-Speech params in JSON or YAML  
+またJSONやYAMLファイルにて、Text-to-Speech API用の変数を配列にして一括処理できます。  
 
 YAML
 
@@ -188,15 +190,16 @@ JSON
 ```
 
 ## Cli
-Make sure `GOOGLE_APPLICATION_CREDENTIALS` is set, and Cloud Text-to-Speech API permission enabled.  
+環境変数 `GOOGLE_APPLICATION_CREDENTIALS` を設定してから実行してください。
 
-Run command below to generate sound tracks.
+下記のコマンドで合成音声が生成されます。
 
 ```
 npx google-tts-narrator -s PATH/TO/FILE
 ```
 
-System will guess type by your scenario file's extension, and create a directory for sound tracks if not given.
+シナリオファイルPath以外、何も設定していない場合、システムは拡張子よりタイプを算出し処理を行い、出力フォルダも自動で作成します。
+
 
 ```
 Options:
@@ -208,7 +211,8 @@ Options:
 ```
 
 ## API
-Make sure `GOOGLE_APPLICATION_CREDENTIALS` is set, or [set credentials manually](https://googleapis.dev/nodejs/text-to-speech/latest/v1.TextToSpeechClient.html).
+環境変数 `GOOGLE_APPLICATION_CREDENTIALS` を設定するか、下記のように[手動で認証ファイルを設置](https://googleapis.dev/nodejs/text-to-speech/latest/v1.TextToSpeechClient.html)します。
+
 
 ```js
 const Narrator = require('google-tts-narrator');
@@ -220,10 +224,11 @@ const gen = Narrator.yieldSpeeches(scenario, 'pug', options);
 ...
 ```
 
-API mode only support single file scenario  
+また、APIとして利用する場合、single fileのみ対応します。
+
 
 ### Generate Style
-Use Generate Style API to create sounds step by step, it will save the costs.
+ジェネレーターを使って音声を１ステップずつ合成できます、途中でやめられるので、時間や経費の節約につながります。
 
 ```js
 const fs = require('fs');
@@ -241,7 +246,7 @@ const gen = Narrator.yieldSpeeches(scenario, 'pug');
 ```
 
 ### Async/Await Style
-Classical async/await style also can be used to batch create sound tracks.
+async/await スタイルのAPIを使って、シナリオを一括変換することもできます。
 
 ```js
 const fs = require('fs');
@@ -257,9 +262,10 @@ const scenario = fs.readFileSync('PATH/TO/scenario.pug', 'utf-8');
 })();
 ```
 
+
 ## Special Thanks
-Ms Rie Ishikawa of [Rose Ladies School](https://twitter.com/RLSvoice) provides all Japanese dialogue samples for kindness.  
-All copyrights of Japanese dialogue samples belongs to Rose Ladies School. Rie Ishikawa.
+本プロジェクトのサンプルに使う日本語対話サンプルは **[Rose Ladies School](https://twitter.com/RLSvoice)** の **石川りえ先生** のご厚意より寄贈されております。  
+該当部分の著作権は[Rose Ladies School](https://twitter.com/RLSvoice)の石川りえ先生に帰属します。
 
 ## [LICENSE](./LICENSE)
-MIT(Except Japanese Dialogue Samples)
+MIT(日本語対話サンプルを除く)
