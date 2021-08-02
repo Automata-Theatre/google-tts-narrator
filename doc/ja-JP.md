@@ -1,6 +1,8 @@
 # Google TTS Narrator
 
+[![npm version](https://badge.fury.io/js/google-tts-narrator.svg)](https://badge.fury.io/js/google-tts-narrator)
 ![Coverage Status](https://img.shields.io/badge/coverage-95%25-brightgreen)
+[![NPM](https://img.shields.io/npm/l/google-tts-narrator)](https://www.npmjs.com/package/google-tts-narrator)
 
 **[Google Cloud Text-to-Speech](https://cloud.google.com/text-to-speech)** を利用し **[SSML](https://cloud.google.com/text-to-speech/docs/ssml)** (またはその他形式)の脚本を読み上げるプログラムです。
 
