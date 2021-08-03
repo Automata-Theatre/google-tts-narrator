@@ -23,17 +23,20 @@ describe('Test scenario parser', () => {
       expect(narrator.step).toBe(0)
       expect(narrator.gen.next().value).toBeTruthy()
     })
+
+    test(`Should get text list & request data list from ${type}`, async () => {
+      const narrator = new Narrator()
+      const scenario = await readFile(filePath)
+      await narrator.loadScenario(scenario.toString(), type)
+
+      const { textList, requestDataList } = narrator
+      expect(textList.length).toBeGreaterThan(0)
+      expect(textList.length).toEqual(requestDataList.length)
+      expect(textList[0]).toBeTruthy()
+      expect(requestDataList[0]).toBeTruthy()
+      expect(requestDataList[0].input).toBeTruthy()
+    })
   }
-
-  test('Should get text list from xml|pug', async () => {
-    const narrator = new Narrator()
-    const scenario = await readFile(testFiles['pug'])
-    await narrator.loadScenario(scenario.toString(), 'pug')
-
-    const textList = narrator.handler.textList
-    expect(textList.length).toBeGreaterThan(0)
-    expect(textList[0]).toBeTruthy()
-  })
 })
 
 describe('Test tts api', () => {
@@ -94,7 +97,10 @@ describe('Test error handler', () => {
     const narrator = new Narrator()
     const gen = narrator.yieldSpeeches()
 
-    expect(async () => { await gen.next() }).rejects.toThrow()
-    expect(async () => { await narrator.fetchSpeeches() }).rejects.toThrow()
+    expect(() => narrator.textList).toThrow()
+    expect(() => narrator.requestDataList).toThrow()
+
+    gen.next().catch(e => expect(e).toMatch('loadScenario'))
+    narrator.fetchSpeeches().catch(e => expect(e).toMatch('loadScenario'))
   })
 })
