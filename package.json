@@ -1,6 +1,6 @@
 {
   "name": "google-tts-narrator",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "A Google Text-to-Speech Narrator",
   "main": "index.js",
   "dependencies": {
