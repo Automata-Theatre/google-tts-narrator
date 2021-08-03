@@ -266,8 +266,8 @@ const scenario = fs.readFileSync('PATH/TO/scenario.pug', 'utf-8');
 
 
 ## Special Thanks
-本プロジェクトのサンプルに使う日本語対話サンプルは **[Rose Ladies School](https://twitter.com/RLSvoice)** の **石川りえ先生** のご厚意より寄贈されております。  
-該当部分の著作権は[Rose Ladies School](https://twitter.com/RLSvoice)の石川りえ先生に帰属します。
+本プロジェクトのサンプルに使う日本語対話サンプルは **[Rose Ladies School](https://twitter.com/RLSvoice)** の **石川理江先生** のご厚意より寄贈されております。  
+該当部分の著作権は[Rose Ladies School](https://twitter.com/RLSvoice)の石川理江先生に帰属します。
 
 ## [LICENSE](./LICENSE)
 MIT(日本語対話サンプルを除く)
