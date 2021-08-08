@@ -74,6 +74,7 @@ describe('Test tts api', () => {
     expect(done).toBeFalsy()
     expect(value.audioContent).toBeTruthy()
     expect(value.narratorInfo.step).toEqual(2)
+    expect(value.narratorInfo.info.input.text).toBeTruthy()
   })
 
   test('Test quick api batch mode', async () => {
@@ -82,13 +83,23 @@ describe('Test tts api', () => {
 
     expect(speaches.length).toBeGreaterThan(0)
     expect(speaches[0].audioContent).toBeTruthy()
+    expect(speaches[0].narratorInfo.info.input.text).toBeTruthy()
   })
 
-  test('Test quick api id mode', async () => {
+  test('Test quick api id mode for pug', async () => {
     const scenario = await readFile(testFiles['pug'], 'utf-8')
     const speach = await Narrator.fetchSpeechByIndex(scenario, 'pug', 3)
 
     expect(speach.audioContent).toBeTruthy()
+    expect(speach.narratorInfo.info.input.text).toBeTruthy()
+  })
+
+  test('Test quick api id mode for yml', async () => {
+    const scenario = await readFile(testFiles['yml'], 'utf-8')
+    const speach = await Narrator.fetchSpeechByIndex(scenario, 'yml', 3)
+
+    expect(speach.audioContent).toBeTruthy()
+    expect(speach.narratorInfo.info.input.text).toBeTruthy()
   })
 })
 
@@ -102,5 +113,13 @@ describe('Test error handler', () => {
 
     gen.next().catch(e => expect(e).toMatch('loadScenario'))
     narrator.fetchSpeeches().catch(e => expect(e).toMatch('loadScenario'))
+  })
+
+  test('Throws if index out of range', async () => {
+    const sce = await readFile(testFiles['json'], 'utf-8')
+
+    Narrator.fetchSpeechByIndex(sce, 'json', 42).catch(e => {
+      expect(e).toMatch('Element id=42')
+    })
   })
 })

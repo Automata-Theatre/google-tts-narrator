@@ -1,0 +1,14 @@
+- # OGG Spearker
+  audioConfig:
+    audioEncoding: OGG_OPUS
+    pitch: 1.6
+    speakingRate: 1.07
+    sampleRateHertz: 48000
+  voice:
+    languageCode: ja-JP
+    name: ja-JP-Wavenet-A
+  input:
+    ssml: |-
+      <speak>
+        大根と、たまごと、牛すじを......<break time="500ms"/>あと、タコさんウインナーもお願いします。
+      </speak>
