@@ -18,7 +18,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Automata-Theatre/tts-narrator.git"
+    "url": "git+https://github.com/Automata-Theatre/google-tts-narrator.git"
   },
   "keywords": [],
   "author": "",
@@ -27,7 +27,7 @@
     "google-tts-narrator": "cli.js"
   },
   "bugs": {
-    "url": "https://github.com/Automata-Theatre/tts-narrator/issues"
+    "url": "https://github.com/Automata-Theatre/google-tts-narrator/issues"
   },
-  "homepage": "https://github.com/Automata-Theatre/tts-narrator#readme"
+  "homepage": "https://github.com/Automata-Theatre/google-tts-narrator#readme"
 }
