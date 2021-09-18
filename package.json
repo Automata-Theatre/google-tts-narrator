@@ -1,13 +1,13 @@
 {
   "name": "google-tts-narrator",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "A Google Text-to-Speech Narrator",
   "main": "index.js",
   "dependencies": {
     "@google-cloud/text-to-speech": "^3.2.6",
     "js-yaml": "^4.1.0",
     "pug": "^3.0.2",
-    "xmldom": "^0.6.0",
+    "@xmldom/xmldom": "^0.7.5",
     "yargs": "^16.2.0"
   },
   "devDependencies": {
